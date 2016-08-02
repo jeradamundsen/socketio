@@ -7,6 +7,8 @@ $(function() {
     '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
   ];
 
+
+
   // Initialize variables
   var $window = $(window);
   var $usernameInput = $('.usernameInput'); // Input for username
@@ -25,7 +27,7 @@ $(function() {
 
   var socket = io();
 
-  function addParticipantsMessage (data) {
+  function addParticipantsMessage (data) { // keeps count of how many are in chat
     var message = '';
     if (data.numUsers === 1) {
       message += "there's 1 participant";
@@ -35,8 +37,9 @@ $(function() {
     log(message);
   }
 
+
   // Sets the client's username
-  function setUsername () {
+  function setUsername () { // TAKES VALID USERNAME, THEN EMITS IT
     username = cleanInput($usernameInput.val().trim());
 
     // If the username is valid
@@ -51,8 +54,9 @@ $(function() {
     }
   }
 
-  // Sends a chat message
-  function sendMessage () {
+
+
+  function sendMessage () {  // SENDS A CHAT MESSAGE
     var message = $inputMessage.val();
     // Prevent markup from being injected into the message
     message = cleanInput(message);
@@ -74,8 +78,8 @@ $(function() {
     addMessageElement($el, options);
   }
 
-  // Adds the visual chat message to the message list
-  function addChatMessage (data, options) {
+
+  function addChatMessage (data, options) { // ADDS A VISUAL CHAT MESSAGE TO THE MESSAGE LIST
     // Don't fade the message in if there is an 'X was typing'
     var $typingMessages = getTypingMessages(data);
     options = options || {};
@@ -223,9 +227,16 @@ $(function() {
     $inputMessage.focus();
   });
 
-  // Socket events
+
+
+
+
+
+  // !!!!!!!!!!!!!!!!! SOCKET EVENTS !!!!!!!!!!!!!!!!!!!!!!!!
 
   // Whenever the server emits 'login', log the login message
+
+ //1.
   socket.on('login', function (data) {
     connected = true;
     // Display the welcome message
