@@ -13,7 +13,7 @@ app.use(express.static(__dirname + '/public'));
 
 
 
-var numUsers = 0;
+var numUsers = 0; // keeps count of how many are in room
 
 io.on('connection', function (socket) {
   var addedUser = false;

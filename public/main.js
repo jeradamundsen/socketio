@@ -235,7 +235,6 @@ $(function() {
   // !!!!!!!!!!!!!!!!! SOCKET EVENTS !!!!!!!!!!!!!!!!!!!!!!!!
 
   // Whenever the server emits 'login', log the login message
-
  //1.
   socket.on('login', function (data) {
     connected = true;
